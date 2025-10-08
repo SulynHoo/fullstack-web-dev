@@ -17,13 +17,14 @@
     text-align: center;
 }
 
-.cats{
+.container_cats{
     border: 5px solid none;
     padding: 10px;
     display: grid;
     grid-template-columns: auto auto auto;
+    text-align: center;
 }
 
-.cats img{
+.container_cats img{
     width: 100px;
 }
