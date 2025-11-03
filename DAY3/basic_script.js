@@ -52,7 +52,7 @@ console.log(x + " times " + x  + " = " + x*x);
 
     console.log(myDetails.students[0]);
 
-    let details = {
+    let details = [
         {
             "name" : "Sulyn",
             "age" : "20",
@@ -67,7 +67,7 @@ console.log(x + " times " + x  + " = " + x*x);
             "name" : "Sulyn",
             "age" : "20",
             "city": "Penang"
-        };
-    }
+        },
+    ]
 
     console.log(details);

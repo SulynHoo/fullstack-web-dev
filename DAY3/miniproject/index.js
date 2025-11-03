@@ -18,8 +18,13 @@ button.addEventListener("click", function () {
    result.textContent = `Tip: RM${tip.toFixed(2)} | Total: RM${total.toFixed(2)}`;
  });
 
- billInput.onchange = () => {
-    if(billInput.value != "" || tipInput.value != ""){
-        button.disabled = false;
-    }
- }
+billInput.onchange = () => {
+  if(billInput.value != "" || tipInput.value != ""){
+    button.disabled = false;
+  }
+}
+//  billInput.onchange = () => {
+//     if(billInput.value != "" || tipInput.value != ""){
+//         button.disabled = false;
+//     }
+//  }
