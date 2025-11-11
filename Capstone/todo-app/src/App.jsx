@@ -4,6 +4,8 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import Form from './components/Form'
 import TodoList from './components/TodoList'
+import Login from './components/Login'
+import {Routes, Route} from 'react-router-dom'
 
 function App() {
   const [inputText, setInputText] = useState("")
@@ -17,6 +19,7 @@ function App() {
   
   useEffect(() => {
     filterHandler();
+    saveLocalTodos();
   }, [todos, status]);
 
   const filterHandler = () => {
@@ -38,32 +41,39 @@ function App() {
     localStorage.setItem('todos', JSON.stringify(todos));
   };
 
+  //Get todos from local storage
   const getLocalTodos = () => {
-    if(localStorage.getItem('todos') === null){
-      localStorage.setItem('todos', JSON.stringify([]));
-    } else {
-      let todoLocal = JSON.parse(localStorage.getItem('todos'));
-      setTodos(todoLocal);
+    const storedTodos = localStorage.getItem('todos');
+    if (storedTodos){
+      setTodos(JSON.parse(storedTodos))
+    } else{
+      localStorage.setItem('todos', JSON.stringify([]))
     }
   };
 
   return (
-    <div className='App'>
-      <header>
-        <h1>Todo List</h1>
-      </header>
-      <Form 
-        inputText={inputText} 
-        setInputText={setInputText} 
-        todos={todos} 
-        setTodos={setTodos}
-        setStatus={setStatus} />
-
-      <TodoList 
-        todos={todos} 
-        setTodos={setTodos} 
-        filteredTodos={filteredTodos} />
-    </div>
+    <Routes>
+      <Route path="/" element={<Login />} />
+      <Route 
+        path="/form" 
+        element={
+          <div className='todo-container'>
+            <Form 
+              inputText={inputText}
+              setInputText={setInputText}
+              todos={todos}
+              setTodos={setTodos}
+              setStatus={setStatus} 
+            />
+            <TodoList
+              filteredTodos={filteredTodos}
+              setTodos={setTodos}
+              todos={todos}
+            />
+          </div>
+        }
+      />
+    </Routes>
   )
 }
 
