@@ -8,6 +8,12 @@ const Form = ({setInputText, todos, setTodos, inputText, setStatus}) =>{
 
     const submitTodoHandler = (e) => {
         e.preventDefault();
+
+        if (!inputText.trim()){
+            alert("List cannot be empty!")
+            return;
+        };
+
         setTodos([
             ...(todos || []), {text: inputText, completed: false, id: Math.random() * 1000}
         ]);
@@ -19,7 +25,7 @@ const Form = ({setInputText, todos, setTodos, inputText, setStatus}) =>{
     }
 
     return(
-        <form>
+        <form className='todolist-form'>
             <input value={inputText} onChange={inputTextHandler} type="text" className="todo-input" placeholder="Enter todo name" />
             <button onClick={submitTodoHandler} className='todo-button' type='submit'>
                 <i className='fa-solid fa-plus'></i>

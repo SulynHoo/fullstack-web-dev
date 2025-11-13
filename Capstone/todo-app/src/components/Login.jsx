@@ -21,6 +21,7 @@ const Login = () => {
 
       if (!response.ok) {
         const text = await response.text();
+        alert("Incorrect email or password!")
         throw new Error(text || "Login failed");
       }
 
@@ -39,7 +40,7 @@ const Login = () => {
     <div className="login-container">
         <h1>Login</h1>
 
-        <form onSubmit={handleLogin}>
+        <form onSubmit={handleLogin} className="login-form">
             <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter your email" required /><br />
             <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Enter password" required /><br />
             <button type="submit">Login</button>
